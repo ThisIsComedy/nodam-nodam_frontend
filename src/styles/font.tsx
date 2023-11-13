@@ -24,8 +24,8 @@ const font = {
 	body3: fontGenerator(500, 0.75, 150), // 12px
 
 	p1: fontGenerator(400, 1, 150), // 16px
-	p2: fontGenerator(500, 0.875, 150), // 14px
-	p3: fontGenerator(600, 0.75, 150), // 12px
+	p2: fontGenerator(400, 0.875, 150), // 14px
+	p3: fontGenerator(400, 0.75, 150), // 12px
 };
 
 export default font;

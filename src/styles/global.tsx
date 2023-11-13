@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
 
 input[type="checkbox"],
 input[type="radio"] {
-  accent-color: #34C185;
+  accent-color: ${color.nodamGreen};
   cursor: pointer;
 }
 
@@ -52,6 +52,12 @@ button {
   color: ${color.nodamGreen};
   text-decoration: underline;
 }
+
+div {
+  margin:0;
+  padding: 0;
+}
 `;
+
 
 export default GlobalStyle;
