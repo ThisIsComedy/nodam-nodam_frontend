@@ -1,4 +1,4 @@
-FROM node:18
+FROM jitesoft/node-yarn:18
 
 WORKDIR /app
 
