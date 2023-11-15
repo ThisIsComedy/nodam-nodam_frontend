@@ -41,7 +41,7 @@ jobs:
         run: sudo docker rm -f nodam-nodam_frontend
 
       - name: docker run new container
-        run: sudo docker run -it -d -p 8082:8080 --name nodam-nodam_frontend ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend
+        run: sudo docker run -it -d -p 3001:3000 --name nodam-nodam_frontend ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend
 
       - name: docker rmi none image
         run: |
