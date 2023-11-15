@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY package.json yarn.lock ./
 
-RUN npm install yarn
-
 RUN yarn install
 
 COPY . .
