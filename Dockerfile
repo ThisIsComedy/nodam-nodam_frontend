@@ -1,11 +1,13 @@
-FROM jitesoft/node-yarn:18
+FROM node:18
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
+COPY yarn.lock ./
 
-RUN yarn install
+RUN npm install yarn --global --force
+RUN yarn install --immutable --immutable-cache --check-cache
 
-COPY . .
+COPY . ./
 
 ENTRYPOINT [ "yarn", "start" ]
