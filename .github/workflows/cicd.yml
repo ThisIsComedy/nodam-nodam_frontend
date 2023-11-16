@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: 21.0.0
 
+      - name: create docker multi platform builder
+        run: docker buildx create --name multi-arch-builder --driver docker-container --bootstrap --use
+
       - name: docker image build
         run: docker buildx build --platform=linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend .
 
