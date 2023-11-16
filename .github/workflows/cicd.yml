@@ -26,7 +26,7 @@ jobs:
       - name: create docker multi platform builder
         run: docker buildx create --name multi-arch-builder --driver docker-container --bootstrap --use
 
-      - name: docker image build
+      - name: docker image build & push
         run: docker buildx build --push --platform=linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend:latest .
 
   deploy:
