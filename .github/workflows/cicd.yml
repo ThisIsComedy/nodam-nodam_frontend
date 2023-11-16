@@ -21,7 +21,7 @@ jobs:
         run: docker buildx create --name multi-arch-builder --driver docker-container --bootstrap --use
 
       - name: docker image build
-        run: docker buildx build --platform=linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend .
+        run: docker buildx build --platform=linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend:0.0.1 .
 
       - name: docker login
         uses: docker/login-action@v2
@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: docker hub push
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend:0.0.1
 
   deploy:
     needs: build
