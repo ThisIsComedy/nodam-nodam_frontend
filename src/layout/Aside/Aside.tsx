@@ -1,42 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import GlobalStyle from "../../styles/global";
 import font from "../../styles/font";
 import color from "../../styles/color";
 
 const Aside = () => {
 	return (
-		<>
-			<GlobalStyle />
-			<Container>
-				<TitleBox>
-					<LogoBox>
-						<Slogan>난 네가 노담이었으면 좋겠어</Slogan>
-						<Logo src='/assets/global/nodamnodamlogo.png' />
-					</LogoBox>
-					<Developer>2106 마현우, 2109 신준서</Developer>
-				</TitleBox>
-				<InformationContainer>
-					<NotionButton>
-						<NotionLogo src='/assets/global/notion.png' />
-						<NotionTextBox>
-							<NotionButtonTitle>노담노담 더 알아보기</NotionButtonTitle>
-							<NotionButtonDesc>클릭해서 노션 페이지로 이동</NotionButtonDesc>
-						</NotionTextBox>
-					</NotionButton>
-					<HelpBox>
-						<HelpBoxTitle>
-							<WarnIcon src='/assets/global/error.png' />
-							<HelpBoxTitleText>화면이 짤려서 보인다면?</HelpBoxTitleText>
-						</HelpBoxTitle>
-						<HelpBoxDesc>
-							만약 화면이 짤려서 보인다면 페이지를 축소하여 <br/>
-							화면 사이즈에 맞게 조절해주시기 바랍니다.
-						</HelpBoxDesc>
-					</HelpBox>
-				</InformationContainer>
-			</Container>
-		</>
+		<Container>
+			<TitleBox>
+				<LogoBox>
+					<Slogan>난 네가 노담이었으면 좋겠어</Slogan>
+					<Logo src='/assets/global/nodamnodamlogo.png' />
+				</LogoBox>
+				<Developer>2106 마현우, 2109 신준서</Developer>
+			</TitleBox>
+			<InformationContainer>
+				<NotionButton>
+					<NotionLogo src='/assets/global/notion.png' />
+					<NotionTextBox>
+						<NotionButtonTitle>노담노담 더 알아보기</NotionButtonTitle>
+						<NotionButtonDesc>클릭해서 노션 페이지로 이동</NotionButtonDesc>
+					</NotionTextBox>
+				</NotionButton>
+				<HelpBox>
+					<HelpBoxTitle>
+						<WarnIcon src='/assets/global/error.png' />
+						<HelpBoxTitleText>화면이 짤려서 보인다면?</HelpBoxTitleText>
+					</HelpBoxTitle>
+					<HelpBoxDesc>
+						만약 화면이 짤려서 보인다면 페이지를 축소하여 <br />
+						화면 사이즈에 맞게 조절해주시기 바랍니다.
+					</HelpBoxDesc>
+				</HelpBox>
+			</InformationContainer>
+		</Container>
 	);
 };
 

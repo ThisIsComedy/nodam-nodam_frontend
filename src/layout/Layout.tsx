@@ -1,19 +1,17 @@
 import Aside from "./Aside/Aside";
 import styled from "styled-components";
-import GlobalStyle from "../styles/global";
+import font from "../styles/font";
+import color from "../styles/color";
 
 const Layout = (props: { children: React.ReactNode }) => {
 	return (
-		<>
-			<GlobalStyle />
-			<Container>
-				<Aside />
-				<Main>
-					<Mockup src='/assets/global/iPhone14.png' />
-					<Screen>{props.children}</Screen>
-				</Main>
-			</Container>
-		</>
+		<Container>
+			<Aside />
+			<Main>
+				<Mockup src='/assets/global/iPhone14.png' />
+				<Screen>{props.children}</Screen>
+			</Main>
+		</Container>
 	);
 };
 
@@ -38,19 +36,23 @@ const Mockup = styled.img`
 	height: 883px;
 	width: 437px;
 	position: absolute;
-	z-index: 2;
+	z-index: 1;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 `;
 
 const Screen = styled.div`
 	width: 390px;
 	height: 844px;
-	/* background-color: salmon; */
+	/* background-color: #fff; */
 	position: absolute;
-	z-index: 1;
+	z-index: 2;
 	top: 19.5px;
 	left: 23.5px;
-	padding-top: 47px;
-	padding-bottom: 34px;
+	/* padding: 47px 0 34px; */
+	/* border-radius: 49px; */
 `;
 
 export default Layout;

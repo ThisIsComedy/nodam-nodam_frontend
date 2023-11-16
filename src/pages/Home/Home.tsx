@@ -1,19 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-import GlobalStyle from "../../styles/global";
 import font from "../../styles/font";
+import color from "../../styles/color";
 
 import Layout from "../../layout/Layout";
+import Screen from "../../layout/Screen/Screen";
+// import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
 	return (
-		<>
-			<GlobalStyle />
-			<Layout>
-				여기에 핸드폰 화면이 들어갑니다.
-			</Layout>
-		</>
+		<Layout>
+			<Screen bgcolor={color.gray200}>
+				<Section>
+					{/* <iframe src="https://scratch.mit.edu/projects/924815380/embed" width="390" height="340"></iframe> */}
+				</Section>
+				
+				{/* <Footer isGNB={true} /> */}
+			</Screen>
+		</Layout>
 	);
 };
+
+const Section = styled.div`
+	width: 100%;
+	height: 100%;
+`;
 
 export default Home;
