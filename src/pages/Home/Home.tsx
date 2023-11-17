@@ -6,15 +6,9 @@ import color from "../../styles/color";
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
+import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
 
 const Home = () => {
-	const knowHowList = [
-		{
-			title: "금단증상이 심해진다면?",
-			desc: "이 방법을 따라해보세요!",
-		},
-	];
-
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>
@@ -23,10 +17,7 @@ const Home = () => {
 						<Logo src='/assets/home/nodamnodamlogo_gray.png' />
 					</Header>
 					<BoxContainer>
-						<KnowHowBox>
-							<KnowHowBoxTitle>{knowHowList[0].title}</KnowHowBoxTitle>
-							<KnowHowBoxDesc>{knowHowList[0].desc}</KnowHowBoxDesc>
-						</KnowHowBox>
+						<KnowHowBox />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={1} />
@@ -61,24 +52,4 @@ const BoxContainer = styled.div`
 	flex-direction: column;
 	gap: 12px;
 	padding: 0 16px;
-`;
-
-const KnowHowBox = styled.div`
-	display: flex;
-	width: 100%;
-	background-color: ${color.white};
-	border-radius: 16px;
-	gap: 4px;
-	flex-direction: column;
-	padding: 10px 16px;
-`;
-
-const KnowHowBoxTitle = styled.p`
-	${font.p3}
-	color: ${color.gray700};
-`;
-
-const KnowHowBoxDesc = styled.p`
-	${font.body2}
-	color: ${color.black};
 `;
