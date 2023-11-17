@@ -4,9 +4,9 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 import GNBButton from "./GNBButton";
 
-const Footer = (props: { isGNB: boolean; bgColor: string; page: number }) => {
+const Footer = (props: { isGNB: boolean; page: number }) => {
 	const containerStyle = {
-		backgroundColor: props.isGNB ? props.bgColor : "",
+		backgroundColor: props.isGNB ? color.white : "",
 		height: props.isGNB ? "90px" : "34px",
 	};
 
