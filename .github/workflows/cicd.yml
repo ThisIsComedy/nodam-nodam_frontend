@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: 21.0.0
 
-      - name: Install Dependencies
-        run: npm install
-
       - name: Install yarn
         run: npm install -g yarn
+
+      - name: Install Dependencies
+        run: yarn install
 
       - name: Build React App
         run: yarn build
