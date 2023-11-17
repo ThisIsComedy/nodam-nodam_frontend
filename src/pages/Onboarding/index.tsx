@@ -5,6 +5,7 @@ import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
 import LargeButton from "../../components/atoms/LargeButton";
+import Footer from "../../components/Footer/Footer";
 
 const Onboarding = () => {
     return (
@@ -24,6 +25,7 @@ const Onboarding = () => {
                             </LoginWrap>
                         </StartWrap>
                     </Container>
+                    <Footer isGNB={false} page={1} />
                 </Screen>
             </Layout>
         </>
