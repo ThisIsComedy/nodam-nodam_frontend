@@ -4,6 +4,7 @@ import Screen from "../../layout/Screen/Screen";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
+import LargeButton from "../../components/atoms/LargeButton";
 
 const Onboarding = () => {
     return (
@@ -16,7 +17,7 @@ const Onboarding = () => {
                             <Logo src="/assets/global/nodamnodamlogo.png"/>
                         </HeaderWrap>
                         <StartWrap>
-                            <StartButton>시작하기</StartButton>
+                            <LargeButton text="시작하기" />
                             <LoginWrap>
                                 <Guide>이미 계정이 있나요?</Guide>
                                 <Login>로그인</Login>
@@ -61,18 +62,6 @@ const StartWrap = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
-`;
-
-const StartButton = styled.button`
-  width: 358px;
-  height: 64px;
-  ${font.H4}
-  color: ${color.white};
-  background-color: ${color.gray900};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 16px;
 `;
 
 const LoginWrap = styled.div`
