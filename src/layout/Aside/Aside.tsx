@@ -36,6 +36,8 @@ const Aside = () => {
 	);
 };
 
+export default Aside;
+
 const Container = styled.div`
 	width: 320px;
 	display: flex;
@@ -151,5 +153,3 @@ const HelpBoxDesc = styled.p`
 	${font.p2}
 	color: ${color.gray600};
 `;
-
-export default Aside;

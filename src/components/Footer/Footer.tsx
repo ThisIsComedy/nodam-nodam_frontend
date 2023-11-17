@@ -1,0 +1,97 @@
+import React from "react";
+import styled from "styled-components";
+import font from "../../styles/font";
+import color from "../../styles/color";
+import GNBButton from "./GNBButton";
+
+const Footer = (props: { isGNB: boolean; bgColor: string; page: number }) => {
+	const containerStyle = {
+		backgroundColor: props.isGNB ? props.bgColor : "",
+		height: props.isGNB ? "90px" : "34px",
+	};
+
+	const GNBArray = [
+		{
+			text: "홈",
+			icon: [
+				"/assets/footer/home_active.png",
+				"/assets/footer/home_default.png",
+			],
+		},
+		{
+			text: "기록",
+			icon: [
+				"/assets/footer/record_active.png",
+				"/assets/footer/record_default.png",
+			],
+		},
+		{
+			text: "랭킹",
+			icon: [
+				"/assets/footer/ranking_active.png",
+				"/assets/footer/ranking_default.png",
+			],
+		},
+		{
+			text: "프로필",
+			icon: [
+				"/assets/footer/profile_active.png",
+				"/assets/footer/profile_default.png",
+			],
+		},
+	];
+
+	return (
+		<Container style={containerStyle}>
+			{props.isGNB && (
+				<GNBContainer>
+					{GNBArray.map((e, i) => {
+						return (
+							<GNBButton
+								index={i + 1}
+								text={e.text}
+								icon={e.icon}
+								isActive={props.page === i + 1 ? true : false}
+							/>
+						);
+					})}
+				</GNBContainer>
+			)}
+			<HomeIndicator src='/assets/global/HomeIndicator.png' />
+		</Container>
+	);
+};
+
+export default Footer;
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 0;
+	z-index: 3;
+	border-radius: 0 0 49px 49px;
+`;
+
+const HomeIndicator = styled.img`
+	height: 34px;
+	width: 390px;
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+`;
+
+const GNBContainer = styled.div`
+	border-top: 1px solid ${color.gray200};
+	height: 56px;
+	width: 390px;
+	display: flex;
+	flex-direction: row;
+	gap: 14px;
+	padding: 0 16px;
+`;
