@@ -24,7 +24,7 @@ jobs:
         run: yarn install
 
       - name: Build React App
-        run: yarn build
+        run: yarn run build
 
   deploy:
     needs: build
