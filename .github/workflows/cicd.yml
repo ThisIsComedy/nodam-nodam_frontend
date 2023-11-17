@@ -42,8 +42,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           password: ${{ secrets.SERVER_PASSWORD }}
           source: "."
-          target: "/home/hw23/project/nodam-nodam/"
+          target: "/home/${{ secrets.SERVER_USERNAME }}/project/nodam-nodam/"
           rm: true
-
-      - name: List Files on Remote Server
-        run: ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} -p 22 "ls -l /home/hw23/project/nodam-nodam/"
