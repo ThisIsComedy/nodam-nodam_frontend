@@ -2,6 +2,7 @@ import Aside from "./Aside/Aside";
 import styled from "styled-components";
 import font from "../styles/font";
 import color from "../styles/color";
+import Footer from "../components/Footer/Footer";
 
 const Layout = (props: { children: React.ReactNode }) => {
 	return (
@@ -14,6 +15,8 @@ const Layout = (props: { children: React.ReactNode }) => {
 		</Container>
 	);
 };
+
+export default Layout;
 
 const Container = styled.div`
 	height: 100vh;
@@ -54,5 +57,3 @@ const Screen = styled.div`
 	/* padding: 47px 0 34px; */
 	/* border-radius: 49px; */
 `;
-
-export default Layout;
