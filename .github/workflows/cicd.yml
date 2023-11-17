@@ -17,38 +17,26 @@ jobs:
         with:
           node-version: 21.0.0
 
-      - name: docker login
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Install Dependencies
+        run: npm install
 
-      - name: create docker multi platform builder
-        run: docker buildx create --name multi-arch-builder --driver docker-container --bootstrap --use
+      - name: Install yarn
+        run: npm install -g yarn
 
-      - name: docker image build & push
-        run: docker buildx build --push --platform=linux/arm64,linux/amd64 -t ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend:latest .
+      - name: Build React App
+        run: yarn build
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
-      - name: docker pull
-        run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend:latest
-
-      - name: docker stop container
-        run: sudo docker rm -f nodam-nodam_frontend
-
-      - name: docker run new container
-        run: sudo docker run -it -d -p 3001:3000 --name nodam-nodam_frontend ${{ secrets.DOCKERHUB_USERNAME }}/nodam-nodam_frontend
-
-      - name: docker rmi none image
-        run: |
-          dangling_images=$(docker images -f "dangling=true" -q)
-
-          if [ -n "$dangling_images" ]; then
-          sudo docker rmi $dangling_images
-          else
-          echo "No dangling images to remove."
-          fi
+      - name: Deploy React App
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          source: "build/"
+          target: "/home/hw23/project/nodam-nodam/"
+          rm: true
