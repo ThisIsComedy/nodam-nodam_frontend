@@ -17,7 +17,7 @@ const Home = () => {
 						width='390'
 						height='340'></iframe> */}
 				</Section>
-				<Footer isGNB={true} bgColor={color.white} page={1} />
+				<Footer isGNB={true} page={1} />
 			</Screen>
 		</Layout>
 	);
