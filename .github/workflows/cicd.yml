@@ -32,7 +32,7 @@ jobs:
 
       - name: Check current directory
         run: | 
-          ls -a
+          ls -a build/
           echo "Current Directory: $(pwd)"
 
   deploy:
