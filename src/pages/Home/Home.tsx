@@ -7,6 +7,7 @@ import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
 import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
+import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
 
 const Home = () => {
 	return (
@@ -18,6 +19,7 @@ const Home = () => {
 					</Header>
 					<BoxContainer>
 						<KnowHowBox />
+						<ThreeDaysCheckBox />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={1} />
