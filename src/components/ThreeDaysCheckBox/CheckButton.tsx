@@ -19,7 +19,7 @@ const CheckButton = (props: { num: number; isChecked: boolean }) => {
 
 export default CheckButton;
 
-const ActiveContainer = styled.button`
+const ActiveContainer = styled.div`
 	display: flex;
 	width: 48px;
 	height: 48px;
@@ -29,7 +29,7 @@ const ActiveContainer = styled.button`
 	background-color: ${color.nodamGreen};
 `;
 
-const DefaultContainer = styled.button`
+const DefaultContainer = styled.div`
 	display: flex;
 	width: 48px;
 	height: 48px;
