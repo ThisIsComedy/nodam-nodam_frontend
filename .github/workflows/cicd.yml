@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: Check current directory
         run: |
-          ls -a build/
+          ls -a
           echo "Current Directory: $(pwd)"
 
       - name: Package Application
