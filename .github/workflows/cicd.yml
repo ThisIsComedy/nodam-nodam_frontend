@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
+  ci-cd:
     runs-on: ubuntu-latest
 
     env:
@@ -35,11 +35,6 @@ jobs:
           ls -a build/
           echo "Current Directory: $(pwd)"
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Check current directory
         run: |
           ls -a
