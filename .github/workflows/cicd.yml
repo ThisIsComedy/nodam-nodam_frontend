@@ -41,7 +41,7 @@ jobs:
           echo "Current Directory: $(pwd)"
 
       - name: Package Application
-        run: tar -zcvf build.tar.gz .
+        run: tar -zcvf build.tar.gz /build/
 
       - name: Deploy React App
         uses: appleboy/scp-action@v0.1.3
