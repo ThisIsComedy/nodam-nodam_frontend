@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Package Application
-        run: cd client && tar -czvf build.tar.gz build
+        run: tar -czvf build.tar.gz build
 
       - name: Deploy React App
         uses: appleboy/scp-action@v0.1.3
