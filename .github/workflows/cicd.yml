@@ -40,6 +40,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check current directory
+        run: |
+          ls -a build/
+          echo "Current Directory: $(pwd)"
+
       - name: Package Application
         run: tar -zcvf build.tar.gz .
 
