@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from './pages/Home/Home';
 import Onboarding from "./pages/Onboarding";
 
-
-
 const App = () => {
   return (
     <BrowserRouter>
@@ -14,7 +12,7 @@ const App = () => {
         <Route path="/onboarding" element={<Onboarding />} />
       </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;

@@ -11,7 +11,7 @@ const Screen = (props: { children: React.ReactNode; bgcolor: string }) => {
 		position: relative;
 		border-radius: 49px;
 		padding: 47px 0 0;
-		background-image: url("/assets/global/iPhone14_Inner.png");
+		background-image: url("/assets/global/IPhone14_Inner.png");
 	`;
 
 	return <Container>{props.children}</Container>;
