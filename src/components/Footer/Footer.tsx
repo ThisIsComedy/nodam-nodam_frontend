@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import font from "../../styles/font";
 import color from "../../styles/color";
 import GNBButton from "./GNBButton";
+import { Link } from "react-router-dom";
 
 const Footer = (props: { isGNB: boolean; page: number }) => {
 	const containerStyle = {
@@ -17,6 +17,7 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				"/assets/footer/home_active.png",
 				"/assets/footer/home_default.png",
 			],
+			endpoint: "/"
 		},
 		{
 			text: "기록",
@@ -24,6 +25,7 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				"/assets/footer/record_active.png",
 				"/assets/footer/record_default.png",
 			],
+			endpoint: "/record"
 		},
 		{
 			text: "랭킹",
@@ -31,6 +33,7 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				"/assets/footer/ranking_active.png",
 				"/assets/footer/ranking_default.png",
 			],
+			endpoint: "/ranking"
 		},
 		{
 			text: "프로필",
@@ -38,6 +41,7 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				"/assets/footer/profile_active.png",
 				"/assets/footer/profile_default.png",
 			],
+			endpoint: "/profile"
 		},
 	];
 
@@ -47,12 +51,14 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				<GNBContainer>
 					{GNBArray.map((e, i) => {
 						return (
-							<GNBButton
-								index={i + 1}
-								text={e.text}
-								icon={e.icon}
-								isActive={props.page === i + 1 ? true : false}
-							/>
+							<Link to={e.endpoint}>
+								<GNBButton
+									index={i + 1}
+									text={e.text}
+									icon={e.icon}
+									isActive={props.page === i + 1 ? true : false}
+								/>
+							</Link>
 						);
 					})}
 				</GNBContainer>
