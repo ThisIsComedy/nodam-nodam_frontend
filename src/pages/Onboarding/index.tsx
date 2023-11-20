@@ -6,6 +6,7 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 import LargeButton from "../../components/atoms/LargeButton";
 import Footer from "../../components/Footer/Footer";
+import envConfig from "../../config";
 
 const Onboarding = () => {
     return (
@@ -18,10 +19,14 @@ const Onboarding = () => {
                             <Logo src="/assets/global/nodamnodamlogo.png"/>
                         </HeaderWrap>
                         <StartWrap>
-                            <LargeButton text="시작하기" />
+                            <a href={envConfig.googleLoginUrl}>
+                                <LargeButton text="시작하기" />
+                            </a>
                             <LoginWrap>
                                 <Guide>이미 계정이 있나요?</Guide>
-                                <Login>로그인</Login>
+                                <a href={envConfig.googleLoginUrl}>
+                                    <Login>로그인</Login>
+                                </a>
                             </LoginWrap>
                         </StartWrap>
                     </Container>
