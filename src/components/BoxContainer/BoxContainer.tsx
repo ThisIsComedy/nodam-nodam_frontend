@@ -17,5 +17,13 @@ const Container = styled.div`
 	flex-wrap: wrap;
 	width: 100%;
 	gap: 12px;
-	padding: 0 16px;
+	padding: 12px 16px;
+	max-height: 659px;
+	overflow: hidden;
+	overflow-y:auto;
+	&::-webkit-scrollbar {
+  	display: none;
+	}	
+	-ms-overflow-style: none; 
+	scrollbar-width: none;
 `;

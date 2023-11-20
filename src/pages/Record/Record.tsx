@@ -9,6 +9,7 @@ import BoxContainer from "../../components/BoxContainer/BoxContainer";
 import Footer from "../../components/Footer/Footer";
 import RateBox from "../../components/RateBox/RateBox";
 import GrassChart from "../../components/GrassChart/GrassChart";
+import TopSmokingReasonBox from "../../components/TopSmokingReasonBox/TopSmokingReasonBox";
 
 const Record = () => {
 	return (
@@ -26,6 +27,7 @@ const Record = () => {
 						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
 						<RateBox title="흡연 횟수" rate={3} type="회" />
 						<GrassChart />
+						<TopSmokingReasonBox />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={2} />
@@ -50,7 +52,6 @@ const Header = styled.div`
 	height: 48px;
 	padding: 0 16px;
 	align-items: center;
-	margin-bottom: 12px;
 `;
 
 const Title = styled.p`

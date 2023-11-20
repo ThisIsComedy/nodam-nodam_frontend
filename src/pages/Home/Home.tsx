@@ -51,7 +51,6 @@ const Header = styled.div`
 	height: 48px;
 	padding: 0 16px;
 	align-items: center;
-	margin-bottom: 12px;
 `;
 
 const Logo = styled.img`
@@ -68,5 +67,5 @@ const RetryButton = styled.button`
 	color: ${color.white};
 	${font.H5};
 	border-radius: 16px;
-	margin-top: 69px;
+	margin-top: 57px;
 `;
