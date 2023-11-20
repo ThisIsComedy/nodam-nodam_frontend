@@ -14,7 +14,12 @@ const Aside = () => {
 				<Developer>2106 마현우, 2109 신준서</Developer>
 			</TitleBox>
 			<InformationContainer>
-				<NotionButton>
+				<NotionButton
+					onClick={() =>
+						window.open(
+							"https://verdant-pirate-cc7.notion.site/f5c0ca018271416ebec92c5879e1f0d9"
+						)
+					}>
 					<NotionLogo src='/assets/global/notion.png' />
 					<NotionTextBox>
 						<NotionButtonTitle>노담노담 더 알아보기</NotionButtonTitle>
@@ -95,6 +100,8 @@ const NotionButton = styled.div`
 	padding: 16px 20px;
 	align-items: center;
 	gap: 16px;
+
+	cursor: pointer;
 `;
 
 const NotionLogo = styled.img`
