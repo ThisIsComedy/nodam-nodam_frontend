@@ -3,7 +3,15 @@ import styled from "styled-components";
 import color from "../../styles/color";
 import GrassCell from './GrassCell';
 
-const GrassChart = (props: { smokingDate: Array<object> }) => {
+const GrassChart = () => {
+	const smokingDate = [
+		{
+			"at": "2023-11-14"
+		},
+		{
+			"at": "2023-11-15"
+		}
+	]
 
 	return (
 		<Container>

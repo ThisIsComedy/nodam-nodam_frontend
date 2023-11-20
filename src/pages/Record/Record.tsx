@@ -7,35 +7,34 @@ import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import BoxContainer from "../../components/BoxContainer/BoxContainer";
 import Footer from "../../components/Footer/Footer";
-import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
-import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
-import GrassChart from "../../components/GrassChart/GrassChart";
 import RateBox from "../../components/RateBox/RateBox";
+import GrassChart from "../../components/GrassChart/GrassChart";
 
-const Home = () => {
+const Record = () => {
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>
 				<Section>
 					<Header>
-						<Logo src='/assets/home/nodamnodamlogo_gray.png' />
+						<Title>기록</Title>
 					</Header>
 					<BoxContainer>
-						<KnowHowBox />
-						<ThreeDaysCheckBox />
-						<GrassChart />
+						<RateBox title="총 금연일" rate={500} type="일" />
+						<RateBox title="아낀 금액" rate={145600} type="원" />
+						<RateBox title="연속 금연일" rate={72} type="일" />
+						<RateBox title="최장 연속 금연일" rate={234} type="일" />
 						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
-						<RateBox title="아낀 금액" rate={9000} type="원" />
+						<RateBox title="흡연 횟수" rate={3} type="회" />
+						<GrassChart />
 					</BoxContainer>
-					<RetryButton>금연 재도전하기</RetryButton>
 				</Section>
-				<Footer isGNB={true} page={1} />
+				<Footer isGNB={true} page={2} />
 			</Screen>
 		</Layout>
 	);
 };
 
-export default Home;
+export default Record;
 
 const Section = styled.div`
 	width: 100%;
@@ -54,19 +53,7 @@ const Header = styled.div`
 	margin-bottom: 12px;
 `;
 
-const Logo = styled.img`
-	height: 28px;
-`;
-
-const RetryButton = styled.button`
-	display: flex;
-	width: 160px;
-	height: 56px;
-	align-items: center;
-	justify-content: center;
-	background-color: ${color.gray900};
-	color: ${color.white};
-	${font.H5};
-	border-radius: 16px;
-	margin-top: 69px;
+const Title = styled.p`
+	${font.H3};
+	color: ${color.black};
 `;
