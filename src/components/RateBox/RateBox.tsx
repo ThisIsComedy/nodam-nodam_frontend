@@ -4,11 +4,13 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 
 const RateBox = (props: { title: string; rate: number, type: string }) => {
+	const RefinedRate: string = props.rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
 	return (
 		<Container>
 			<Title>{props.title}</Title>
 			<RateGroup>
-				<Rate>{props.rate}</Rate>
+				<Rate>{RefinedRate}</Rate>
 				<Type>{props.type}</Type>
 			</RateGroup>
 		</Container>
