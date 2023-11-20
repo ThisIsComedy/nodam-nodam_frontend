@@ -8,8 +8,18 @@ import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
 import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
 import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
+import GrassChart from "../../components/GrassChart/GrassChart";
 
 const Home = () => {
+	const smokingDate = [
+		{
+			"at": "2023-11-14"
+		},
+		{
+			"at": "2023-11-15"
+		}
+	]
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>
@@ -20,6 +30,7 @@ const Home = () => {
 					<BoxContainer>
 						<KnowHowBox />
 						<ThreeDaysCheckBox />
+						<GrassChart smokingDate={smokingDate} />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={1} />
