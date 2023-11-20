@@ -9,7 +9,6 @@ const GrassCell = (props: { isSmoked: boolean }) => {
 				props.isSmoked ? <DefaultCell /> : <ActivedCell />
 			}
 		</>
-
 	);
 };
 

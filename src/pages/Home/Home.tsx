@@ -5,6 +5,7 @@ import color from "../../styles/color";
 
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
+import BoxContainer from "../../components/BoxContainer/BoxContainer";
 import Footer from "../../components/Footer/Footer";
 import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
 import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
@@ -31,6 +32,7 @@ const Home = () => {
 						<KnowHowBox />
 						<ThreeDaysCheckBox />
 						<GrassChart smokingDate={smokingDate} />
+						
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={1} />
@@ -57,12 +59,4 @@ const Header = styled.div`
 
 const Logo = styled.img`
 	height: 28px;
-`;
-
-const BoxContainer = styled.div`
-	display: flex;
-	width: 100%;
-	flex-direction: column;
-	gap: 12px;
-	padding: 0 16px;
 `;
