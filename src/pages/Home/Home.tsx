@@ -10,6 +10,7 @@ import Footer from "../../components/Footer/Footer";
 import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
 import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
 import GrassChart from "../../components/GrassChart/GrassChart";
+import RateBox from "../../components/RateBox/RateBox";
 
 const Home = () => {
 	const smokingDate = [
@@ -32,7 +33,8 @@ const Home = () => {
 						<KnowHowBox />
 						<ThreeDaysCheckBox />
 						<GrassChart smokingDate={smokingDate} />
-						
+						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
+						<RateBox title="아낀 금액" rate={9000} type="원" />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={1} />
