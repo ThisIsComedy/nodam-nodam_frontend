@@ -36,6 +36,7 @@ const Home = () => {
 						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
 						<RateBox title="아낀 금액" rate={9000} type="원" />
 					</BoxContainer>
+					<RetryButton>금연 재도전하기</RetryButton>
 				</Section>
 				<Footer isGNB={true} page={1} />
 			</Screen>
@@ -48,6 +49,9 @@ export default Home;
 const Section = styled.div`
 	width: 100%;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 `;
 
 const Header = styled.div`
@@ -61,4 +65,17 @@ const Header = styled.div`
 
 const Logo = styled.img`
 	height: 28px;
+`;
+
+const RetryButton = styled.button`
+	display: flex;
+	width: 160px;
+	height: 56px;
+	align-items: center;
+	justify-content: center;
+	background-color: ${color.gray900};
+	color: ${color.white};
+	${font.H5};
+	border-radius: 16px;
+	margin-top: 69px;
 `;
