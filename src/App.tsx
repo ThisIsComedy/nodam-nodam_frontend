@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from './pages/Home/Home';
 import Record from './pages/Record/Record';
+import Ranking from './pages/Ranking/Ranking';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/record" element={<Record />} />
+        <Route path="/ranking" element={<Ranking />} />
       </Routes>
     </BrowserRouter>
   )
