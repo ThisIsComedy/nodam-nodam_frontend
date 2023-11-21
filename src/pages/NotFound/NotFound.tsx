@@ -47,7 +47,7 @@ const NotificationGroup = styled.div`
 
 const Nodam404Image = styled.img`
 	width: 200px;
-	margin-bottom: 24px;
+	margin-bottom: 32px;
 `;
 
 const Title = styled.p`
