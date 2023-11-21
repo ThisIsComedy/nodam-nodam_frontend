@@ -1,6 +1,6 @@
-import instance from "./CustomAxios";
+import { loginInstance } from "./instance";
 
 export const googleLogin = async (code: string) => {
-    const { data } = await instance.post(`/api/auth/login?code=${code}`);
+    const { data } = await loginInstance.post(`/api/auth/login?code=${code}`);
     return data;
 };
