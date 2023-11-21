@@ -25,6 +25,7 @@ const Container = styled.div`
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 0px 8px;
+	align-items: center;
 `;
 
 const ProfileGroup = styled.div`
