@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Record from './pages/Record/Record';
 import Ranking from './pages/Ranking/Ranking';
 import Profile from './pages/Profile/Profile';
+import NotFound from './pages/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/record" element={<Record />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )
