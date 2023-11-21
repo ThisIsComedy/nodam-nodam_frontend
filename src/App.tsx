@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from './pages/Home/Home';
 import Onboarding from "./pages/Onboarding";
-import GoogleLogin from "./pages/GoogleLogin";
+import GoogleLogin from "./pages/Login";
 
 const App = () => {
   return (
