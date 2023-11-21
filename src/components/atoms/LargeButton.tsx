@@ -3,18 +3,18 @@ import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
 
-const LargeButton = (props: { text: string }) => {
+const LargeButton = (props: { text: string, isLarge: boolean}) => {
     return (
         <>
-            <StartButton>{props.text}</StartButton>
+            <Button isLarge={props.isLarge} >{props.text}</Button>
         </>
     );
 };
 
 export default LargeButton;
 
-const StartButton = styled.button`
-  width: 358px;
+const Button = styled.button<{ isLarge: boolean }>`
+  width: ${v => v.isLarge ? "358px" : "226px"};
   height: 64px;
   ${font.H4}
   color: ${color.white};
