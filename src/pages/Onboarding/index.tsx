@@ -20,7 +20,7 @@ const Onboarding = () => {
                         </HeaderWrap>
                         <StartWrap>
                             <a href={envConfig.googleLoginUrl}>
-                                <LargeButton text="시작하기" />
+                                <LargeButton text="시작하기" isLarge={true} />
                             </a>
                             <LoginWrap>
                                 <Guide>이미 계정이 있나요?</Guide>
