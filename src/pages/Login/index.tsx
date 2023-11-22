@@ -25,9 +25,9 @@ const GoogleLogin = () => {
             if (data) {
                 localStorage.setItem("accessToken", data.accessToken);
                 localStorage.setItem("refreshToken", data.refreshToken);
+
+                navigate("/");
             }
-            debugger;
-            navigate("/");
         }
 
         onLogin();
