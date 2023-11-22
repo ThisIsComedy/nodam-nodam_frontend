@@ -3,10 +3,14 @@ import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
 
-const LargeButton = (props: { text: string, isLarge: boolean}) => {
+const LargeButton = (props: { text: string, isLarge: boolean, onClick?: React.MouseEventHandler<HTMLDivElement>}) => {
     return (
         <>
-            <Button isLarge={props.isLarge} >{props.text}</Button>
+            {!!props.onClick
+                ? <div onClick={props.onClick}>
+                    <Button isLarge={props.isLarge}>{props.text}</Button>
+                </div>
+                : <Button isLarge={props.isLarge}>{props.text}</Button>}
         </>
     );
 };

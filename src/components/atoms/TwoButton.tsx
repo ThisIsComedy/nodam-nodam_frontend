@@ -4,12 +4,27 @@ import styled from "styled-components";
 import color from "../../styles/color";
 import font from "../../styles/font";
 
-const TwoButton = (props: { large: string, small: string }) => {
+interface TwoButtonProps {
+    large: string;
+    small: string;
+    largeOnClick?: React.MouseEventHandler<HTMLDivElement>;
+    smallOnClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+
+const TwoButton = (props: TwoButtonProps) => {
     return (
         <>
             <Container>
-                <SmallButton>{props.small}</SmallButton>
-                <LargeButton text={props.large} isLarge={false} />
+                {!!props.smallOnClick
+                    ? <div onClick={props.smallOnClick}>
+                        <SmallButton>{props.small}</SmallButton>
+                    </div>
+                    : <SmallButton>{props.small}</SmallButton>}
+                <LargeButton
+                    text={props.large}
+                    isLarge={false}
+                    onClick={props.largeOnClick}
+                />
             </Container>
         </>
     );

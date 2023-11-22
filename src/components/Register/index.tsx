@@ -42,6 +42,23 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
     const getData: EntryFieldType | undefined = data.find(v => v.id === props.step);
     const [inputData, setInputData] = useState<string>("");
 
+    const enteredDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputData(e.target.value);
+    };
+
+    const onNext = async (e: React.MouseEvent<HTMLDivElement>) => {
+        if (props.step === 3) {
+            // 회원가입 api 연동
+            window.location.href = "/";
+        }
+
+        props.setStep((props.step as number) + 1 as Step);
+    };
+
+    const onPrevious = (): void => {
+        props.setStep((props.step as number) - 1 as Step);
+    };
+
     return (
         <>
             <Container>
@@ -52,12 +69,25 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                 <Title>{getData && getData.title}</Title>
                 <InputContent>{getData && getData.inputContent}</InputContent>
                 <Input>
-                    <InputBox step={getData && getData.id} placeholder={getData && getData.title}/>
+                    <InputBox
+                        step={getData && getData.id}
+                        placeholder={getData && getData.title}
+                        onChange={enteredDataHandler}
+                    />
                     {(getData && getData.id !== 1) && <Unit>{getData && getData.unit}</Unit>}
                 </Input>
                 {(getData && (getData.id === 1))
-                    ? <LargeButton text="다음" isLarge={true} />
-                    : <TwoButton large="다음" small="이전" />}
+                    ? <LargeButton
+                        text="다음"
+                        isLarge={true}
+                        onClick={onNext}
+                    />
+                    : <TwoButton
+                        large="다음"
+                        small="이전"
+                        largeOnClick={onNext}
+                        smallOnClick={onPrevious}
+                    />}
             </Container>
         </>
     );
