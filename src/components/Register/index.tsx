@@ -7,6 +7,7 @@ import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
 import {register} from "../../apis";
 import {Link} from "react-router-dom";
+import { isNameValid } from "../../pages/register/validate";
 
 interface EntryFieldType {
     id: Step;
@@ -66,6 +67,10 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
     const onNext = async () => {
         const email = localStorage.getItem("email") ?? "";
 
+        if (props.step === 1 && isNameValid(name)) {
+            props.setStep((props.step as number) + 1 as Step);
+        }
+
         if (props.step === 3) {
             const data = await register({
                 email,
@@ -81,8 +86,6 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
             window.location.href = "/";
         }
-
-        props.setStep((props.step as number) + 1 as Step);
     };
 
     const onPrevious = (): void => {
