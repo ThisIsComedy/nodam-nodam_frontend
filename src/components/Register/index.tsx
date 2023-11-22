@@ -10,7 +10,7 @@ interface EntryFieldType {
     id: Step;
     title: string;
     inputContent: string;
-    unit: string | undefined;
+    unit?: string;
     key: string;
 };
 
