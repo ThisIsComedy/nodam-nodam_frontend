@@ -6,6 +6,7 @@ import color from "../../styles/color";
 import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
 import {register} from "../../apis";
+import {Link} from "react-router-dom";
 
 interface EntryFieldType {
     id: Step;
@@ -92,7 +93,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
         <>
             <Container>
                 <Header>
-                    <LeftArrow src="/assets/register/left_arrow.svg"/>
+                    <Link to="/onboarding"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
                     <Register>회원가입</Register>
                 </Header>
                 <Title>{getData && getData.title}</Title>
