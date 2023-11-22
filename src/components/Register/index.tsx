@@ -8,6 +8,9 @@ import TwoButton from "../atoms/TwoButton";
 import {register} from "../../apis";
 import {Link} from "react-router-dom";
 import {isNameValid, isNumber} from "../../pages/register/validate";
+import {useRecoilState} from "recoil";
+import {UserAdditionalInfo} from "../../apis/recoil/type";
+import {registerState} from "../../apis/recoil/state";
 
 interface EntryFieldType {
     id: Step;
@@ -43,12 +46,13 @@ const data: EntryFieldType[] = [
 
 const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction<Step>>}) => {
     const getData: EntryFieldType | undefined = data.find(v => v.id === props.step);
-    const [name, setName] = useState<string>("");
-    const [smokePerDay, setSmokePerDay] = useState<number>(0);
-    const [cigarettePrice, setCigarettePrice] = useState<number>(0);
+    const [info, setInfo] = useRecoilState<UserAdditionalInfo>(registerState);
 
     useEffect(() => {
         const email = localStorage.getItem("email") ?? "";
+        const getInfo = { ...info };
+        getInfo["email"] = email;
+        setInfo(getInfo);
 
         if (!email || email === "") {
             alert("다시 로그인 해주세요");
@@ -59,13 +63,26 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
     const enteredDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const id = getData?.id;
-        if (id === 1) setName(e.target.value);
-        if (id === 2) setSmokePerDay(parseInt(e.target.value));
-        if (id === 3) setCigarettePrice(parseInt(e.target.value));
+        const getInfo = { ...info };
+
+        if (id === 1) {
+            getInfo["name"] = e.target.value;
+            setInfo(getInfo);
+        }
+
+        if (id === 2) {
+            getInfo["smokePerDay"] = parseInt(e.target.value);
+            setInfo(getInfo);
+        }
+
+        if (id === 3) {
+            getInfo["cigarettePrice"] = parseInt(e.target.value);
+            setInfo(getInfo);
+        }
     };
 
     const onNext = async () => {
-        const email = localStorage.getItem("email") ?? "";
+        const { email, name, smokePerDay, cigarettePrice } = { ...info };
 
         if (props.step === 1 && isNameValid(name)) {
             props.setStep((props.step as number) + 1 as Step);
