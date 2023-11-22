@@ -1,4 +1,4 @@
-import React, {Dispatch, useEffect, useState} from 'react';
+import React, {Dispatch, useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import font from "../../styles/font";
 import { Step } from "../../pages/register/types";
@@ -7,7 +7,7 @@ import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
 import {register} from "../../apis";
 import {Link} from "react-router-dom";
-import { isNameValid } from "../../pages/register/validate";
+import {isNameValid, isNumber} from "../../pages/register/validate";
 
 interface EntryFieldType {
     id: Step;
@@ -71,7 +71,11 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
             props.setStep((props.step as number) + 1 as Step);
         }
 
-        if (props.step === 3) {
+        if (props.step === 2 && isNumber(smokePerDay)) {
+            props.setStep((props.step as number) + 1 as Step);
+        }
+
+        if (props.step === 3 && isNumber(cigarettePrice)) {
             const data = await register({
                 email,
                 name,
@@ -92,6 +96,12 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
         props.setStep((props.step as number) - 1 as Step);
     };
 
+    const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+            onNext();
+        }
+    }
+
     return (
         <>
             <Container>
@@ -106,6 +116,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                         step={getData && getData.id}
                         placeholder={getData && getData.title}
                         onChange={enteredDataHandler}
+                        onKeyPress={onPressEnter}
                     />
                     {(getData && getData.id !== 1) && <Unit>{getData && getData.unit}</Unit>}
                 </Input>
