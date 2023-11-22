@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
@@ -13,6 +13,16 @@ import GrassChart from "../../components/GrassChart/GrassChart";
 import RateBox from "../../components/RateBox/RateBox";
 
 const Home = () => {
+	useEffect(() => {
+		const accessToken = localStorage.getItem("accessToken");
+		const refreshToken = localStorage.getItem("refreshToken");
+
+		if (!(accessToken && refreshToken)) {
+			alert("로그아웃 되었습니다");
+			window.location.href = "/onboarding";
+		}
+	}, []);
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>

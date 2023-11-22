@@ -1,10 +1,11 @@
-import React, {Dispatch, useState} from 'react';
+import React, {Dispatch, useEffect, useState} from 'react';
 import styled from "styled-components";
 import font from "../../styles/font";
 import { Step } from "../../pages/register/types";
 import color from "../../styles/color";
 import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
+import {register} from "../../apis";
 
 interface EntryFieldType {
     id: Step;
@@ -40,15 +41,43 @@ const data: EntryFieldType[] = [
 
 const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction<Step>>}) => {
     const getData: EntryFieldType | undefined = data.find(v => v.id === props.step);
-    const [inputData, setInputData] = useState<string>("");
+    const [name, setName] = useState<string>("");
+    const [smokePerDay, setSmokePerDay] = useState<number>(0);
+    const [cigarettePrice, setCigarettePrice] = useState<number>(0);
+
+    useEffect(() => {
+        const email = localStorage.getItem("email") ?? "";
+
+        if (!email || email === "") {
+            alert("다시 로그인 해주세요");
+            window.location.href = "/onboarding";
+        }
+    }, []);
+
 
     const enteredDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputData(e.target.value);
+        const id = getData?.id;
+        if (id === 1) setName(e.target.value);
+        if (id === 2) setSmokePerDay(parseInt(e.target.value));
+        if (id === 3) setCigarettePrice(parseInt(e.target.value));
     };
 
-    const onNext = async (e: React.MouseEvent<HTMLDivElement>) => {
+    const onNext = async () => {
+        const email = localStorage.getItem("email") ?? "";
+
         if (props.step === 3) {
-            // 회원가입 api 연동
+            const data = await register({
+                email,
+                name,
+                smokePerDay,
+                cigarettePrice
+            });
+
+            localStorage.removeItem("email");
+
+            localStorage.setItem("accessToken", data.accessToken);
+            localStorage.setItem("refreshToken", data.refreshToken);
+
             window.location.href = "/";
         }
 
