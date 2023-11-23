@@ -45,7 +45,7 @@ const data: EntryFieldType[] = [
 ];
 
 const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction<Step>>}) => {
-    const getData: EntryFieldType | undefined = data.find(v => v.id === props.step);
+    const getData: EntryFieldType = data[props.step - 1];
     const [info, setInfo] = useRecoilState<UserAdditionalInfo>(registerState);
 
     useEffect(() => {
@@ -126,18 +126,18 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                     <Link to="/onboarding"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
                     <Register>회원가입</Register>
                 </Header>
-                <Title>{getData && getData.title}</Title>
-                <InputContent>{getData && getData.inputContent}</InputContent>
+                <Title>{getData.title}</Title>
+                <InputContent>{getData.inputContent}</InputContent>
                 <Input>
                     <InputBox
-                        step={getData && getData.id}
-                        placeholder={getData && getData.title}
+                        step={getData.id}
+                        placeholder={getData.title}
                         onChange={enteredDataHandler}
                         onKeyPress={onPressEnter}
                     />
-                    {(getData && getData.id !== 1) && <Unit>{getData && getData.unit}</Unit>}
+                    {(getData.id !== 1) && <Unit>{getData.unit}</Unit>}
                 </Input>
-                {(getData && (getData.id === 1))
+                {(getData.id === 1)
                     ? <LargeButton
                         text="다음"
                         isLarge={true}
