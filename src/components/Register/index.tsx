@@ -40,7 +40,7 @@ const data: EntryFieldType[] = [
         title: "피는 담배의 가격이 얼마인가요?",
         inputContent: "담배 한 갑 가격",
         unit: "원",
-        key: "price"
+        key: "cigarettePrice"
     },
 ];
 
@@ -50,9 +50,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
     useEffect(() => {
         const email = localStorage.getItem("email") ?? "";
-        const getInfo = { ...info };
-        getInfo["email"] = email;
-        setInfo(getInfo);
+        setInfo({...info, email});
 
         if (!email || email === "") {
             alert("다시 로그인 해주세요");
@@ -62,23 +60,13 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
 
     const enteredDataHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const id = getData?.id;
-        const getInfo = { ...info };
+        const id = getData.id;
 
-        if (id === 1) {
-            getInfo["name"] = e.target.value;
-            setInfo(getInfo);
-        }
+        if (id === 1) setInfo({...info, name: e.target.value});
 
-        if (id === 2) {
-            getInfo["smokePerDay"] = parseInt(e.target.value);
-            setInfo(getInfo);
-        }
+        if (id === 2) setInfo({...info, smokePerDay: parseInt(e.target.value) || 0});
 
-        if (id === 3) {
-            getInfo["cigarettePrice"] = parseInt(e.target.value);
-            setInfo(getInfo);
-        }
+        if (id === 3) setInfo({...info, cigarettePrice: parseInt(e.target.value) || 0});
     };
 
     const onNext = async () => {
@@ -134,6 +122,10 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                         placeholder={getData.title}
                         onChange={enteredDataHandler}
                         onKeyPress={onPressEnter}
+                        value={props.step === 1 ? info.name
+                            : props.step === 2 ? info.smokePerDay
+                            : props.step === 3 ? info.cigarettePrice
+                            : ""}
                     />
                     {(getData.id !== 1) && <Unit>{getData.unit}</Unit>}
                 </Input>
