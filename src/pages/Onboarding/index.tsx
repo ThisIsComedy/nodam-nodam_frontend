@@ -9,6 +9,11 @@ import Footer from "../../components/Footer/Footer";
 import envConfig from "../../config";
 
 const Onboarding = () => {
+
+    const onLogin = () => {
+        localStorage.setItem("isRegister", "false");
+    }
+
     return (
         <>
             <Layout>
@@ -25,12 +30,12 @@ const Onboarding = () => {
                             <LoginWrap>
                                 <Guide>이미 계정이 있나요?</Guide>
                                 <a href={envConfig.googleLoginUrl}>
-                                    <Login>로그인</Login>
+                                    <Login onClick={onLogin}>로그인</Login>
                                 </a>
                             </LoginWrap>
                         </StartWrap>
                     </Container>
-                    <Footer isGNB={false} page={1} />
+                    <Footer isGNB={false} page={1}/>
                 </Screen>
             </Layout>
         </>

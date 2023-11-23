@@ -64,7 +64,10 @@ loginInstance.interceptors.response.use(
         }
 
         if (code === 404 || code === 422) {
-            alert("추가 정보 기입을 위해 회원가입 페이지로 이동합니다.");
+            if (localStorage.getItem("isRegister") === "false") {
+                alert("존재하지 않는 유저입니다! 회원가입 페이지로 이동합니다.");
+            }
+
             localStorage.setItem("email", etc);
             window.location.href = "/register";
         }
