@@ -17,7 +17,7 @@ const Footer = (props: { isGNB: boolean; page: number }) => {
 				"/assets/footer/home_active.png",
 				"/assets/footer/home_default.png",
 			],
-			endpoint: "/"
+			endpoint: "/home"
 		},
 		{
 			text: "기록",
