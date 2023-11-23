@@ -4,6 +4,7 @@ import Layout from "../../layout/Layout";
 import color from "../../styles/color";
 import Screen from "../../layout/Screen/Screen";
 import {googleLogin} from "../../apis";
+import styled from "styled-components";
 
 const GoogleLogin = () => {
 
@@ -37,7 +38,10 @@ const GoogleLogin = () => {
         <>
             <Layout>
                 <Screen bgcolor={color.white}>
-                    <p>lsdjfk</p>
+                    <Wrap>
+                        <Symbol src="/assets/global/nodamnodamsymbol.png" />
+                        <Loading src="/assets/login/loading.gif" />
+                    </Wrap>
                 </Screen>
             </Layout>
         </>
@@ -45,3 +49,26 @@ const GoogleLogin = () => {
 };
 
 export default GoogleLogin;
+
+const Wrap = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+`;
+
+const Symbol = styled.img`
+  width: 120px;
+  position: absolute;
+  z-index: 1;
+  margin-bottom: 90px;
+`;
+
+const Loading = styled.img`
+  width: 120px;
+  position: absolute;
+  margin-top: 90px;
+`;
