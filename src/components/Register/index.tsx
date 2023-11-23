@@ -54,7 +54,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
         if (!email || email === "") {
             alert("다시 로그인 해주세요");
-            window.location.href = "/onboarding";
+            window.location.href = "/";
         }
     }, []);
 
@@ -93,7 +93,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("refreshToken", data.refreshToken);
 
-            window.location.href = "/";
+            window.location.href = "/home";
         }
     };
 
