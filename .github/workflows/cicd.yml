@@ -27,17 +27,16 @@ jobs:
       - name: Install Dependencies
         run: yarn install --immutable --immutable-cache --check-cache
 
+      - name: Upload env
+        run: |
+          echo "${{ secrets.ENV }}" > .env
+
       - name: Build React App
         run: yarn run build
 
       - name: Check current directory
         run: | 
           ls -a build/
-          echo "Current Directory: $(pwd)"
-
-      - name: Check current directory
-        run: |
-          ls -a
           echo "Current Directory: $(pwd)"
 
       - name: Package Application

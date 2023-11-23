@@ -4,26 +4,10 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 
 const Badge = (props: { title: string; rate: number; type: number }) => {
-	// none: 0, bronxe: 1, silver: 2. gold: 3
-	let BadgeImageSrc;
-	switch (props.type) {
-		case 0:
-			BadgeImageSrc = "/assets/badge/badge_none.png";
-			break;
-		case 1:
-			BadgeImageSrc = "/assets/badge/badge_bronze.png";
-			break;
-		case 2:
-			BadgeImageSrc = "/assets/badge/badge_silver.png";
-			break;
-		case 3:
-			BadgeImageSrc = "/assets/badge/badge_gold.png";
-			break;
-	}
-
+	// none: 0, bronze: 1, silver: 2. gold: 3
 	return (
 		<Container>
-			<BadgeImage src={BadgeImageSrc} />
+			<BadgeImage src={`/assets/badge/badge_${props.type}.png`} />
 			<TextGroup>
 				<Title>{props.title}</Title>
 				<RateChip>x{props.rate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</RateChip>
