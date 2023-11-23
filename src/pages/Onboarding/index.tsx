@@ -12,7 +12,7 @@ const Onboarding = () => {
     return (
         <>
             <Layout>
-                <Screen bgcolor={"#FFFFFF"}>
+                <Screen bgcolor={color.white}>
                     <Container>
                         <HeaderWrap>
                             <SubHeading>난 네가 노담이었으면 좋겠어</SubHeading>
