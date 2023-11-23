@@ -60,7 +60,7 @@ loginInstance.interceptors.response.use(
 
         if (code === 401) {
             alert("다시 로그인 해주세요.");
-            window.location.href = "/onboarding";
+            window.location.href = "/";
         }
 
         if (code === 404 || code === 422) {

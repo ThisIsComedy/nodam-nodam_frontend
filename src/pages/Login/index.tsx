@@ -17,7 +17,7 @@ const GoogleLogin = () => {
 
         const onLogin = async () => {
             if (accessToken && refreshToken) {
-                navigate("/");
+                navigate("/home");
             }
 
             const code = searchParams.get("code") || "";
@@ -27,7 +27,7 @@ const GoogleLogin = () => {
                 localStorage.setItem("accessToken", data.accessToken);
                 localStorage.setItem("refreshToken", data.refreshToken);
 
-                navigate("/");
+                navigate("/home");
             }
         }
 

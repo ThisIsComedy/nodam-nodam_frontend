@@ -16,8 +16,8 @@ const App = () => {
     <RecoilRoot>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/" element={<Onboarding />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/oauth/login" element={<GoogleLogin />} />
           <Route path="/record" element={<Record />} />
