@@ -9,8 +9,8 @@ import {register} from "../../apis";
 import {Link} from "react-router-dom";
 import {isNameValid, isNumber} from "../../pages/register/validate";
 import {useRecoilState} from "recoil";
-import {UserAdditionalInfo} from "../../apis/recoil/type";
-import {registerState} from "../../apis/recoil/state";
+import {UserAdditionalInfo} from "../../pages/register/store/type";
+import {registerState} from "../../pages/register/store/state";
 
 interface EntryFieldType {
     id: Step;
@@ -89,6 +89,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
             });
 
             localStorage.removeItem("email");
+            localStorage.removeItem("isRegister");
 
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("refreshToken", data.refreshToken);

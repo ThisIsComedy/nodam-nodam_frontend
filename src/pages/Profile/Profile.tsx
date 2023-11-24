@@ -7,16 +7,29 @@ import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
 import Badge from "../../components/Badge/Badge";
+import { logout } from "../../apis";
 
 
 const Profile = () => {
+
+	const onLogout = async () => {
+		logout();
+
+		localStorage.removeItem("accessToken");
+		localStorage.removeItem("refreshToken");
+
+		alert("로그아웃 되었습니다.");
+
+		window.location.href = "/";
+	};
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>
 				<Section>
 					<Header>
 						<Title>프로필</Title>
-						<LogoutButton>로그아웃</LogoutButton>
+						<LogoutButton onClick={onLogout}>로그아웃</LogoutButton>
 					</Header>
 					<ProfileBoxContainer>
 						<ProfileGroup>
