@@ -9,6 +9,7 @@ import Record from './pages/Record/Record';
 import Ranking from './pages/Ranking/Ranking';
 import Profile from './pages/Profile/Profile';
 import NotFound from './pages/NotFound/NotFound';
+import RetryForm from './pages/RetryForm/RetryForm';
 import { RecoilRoot } from "recoil";
 
 const App = () => {
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/record" element={<Record />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/retry" element={<RetryForm />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

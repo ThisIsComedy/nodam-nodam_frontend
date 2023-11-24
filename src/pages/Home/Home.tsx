@@ -61,7 +61,7 @@ const Home = () => {
 								<TwoButton
 									large="재도전"
 									small="닫기"
-									// largeOnClick={}
+									largeOnClick={() => { window.location.href = "/retry" }}
 									smallOnClick={() => setBottomSheetOpen(false)} />
 							</BottomSheetContent>
 						</BottomSheetContainer>
@@ -162,5 +162,5 @@ const BottomSheetDesc = styled.p`
 ${font.H4};
 	color: ${color.black};
 	text-align: center;
-	margin: 41px 0;
+	margin: 36px 0 46px;
 `;
