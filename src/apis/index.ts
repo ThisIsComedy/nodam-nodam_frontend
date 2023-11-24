@@ -12,3 +12,12 @@ export const register = async (body: {email: string, name: string, smokePerDay: 
     const { data } = await instance.put("/api/auth/register", body);
     return data;
 }
+
+export const logout = async () => {
+    const { data } = await instance.delete("/api/auth/logout", {
+        headers: {
+            Authorization: localStorage.getItem("accessToken"),
+        }
+    });
+    return data;
+}
