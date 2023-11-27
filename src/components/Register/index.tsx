@@ -113,7 +113,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
         <>
             <Container>
                 <Header>
-                    <Link to="/onboarding"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
+                    <Link to="/"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
                     <Register>회원가입</Register>
                 </Header>
                 <Title>{getData.title}</Title>
