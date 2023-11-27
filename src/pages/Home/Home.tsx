@@ -17,6 +17,9 @@ const Home = () => {
 		const accessToken = localStorage.getItem("accessToken");
 		const refreshToken = localStorage.getItem("refreshToken");
 
+		localStorage.removeItem("email");
+		localStorage.removeItem("isRegister");
+
 		if (!(accessToken && refreshToken)) {
 			alert("로그아웃 되었습니다");
 			window.location.href = "/";

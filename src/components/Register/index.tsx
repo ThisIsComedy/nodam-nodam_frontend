@@ -50,12 +50,13 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
     useEffect(() => {
         const email = localStorage.getItem("email") ?? "";
-        setInfo({...info, email});
 
         if (!email || email === "") {
             alert("다시 로그인 해주세요");
             window.location.href = "/";
         }
+
+        setInfo({...info, email});
     }, []);
 
 
@@ -88,9 +89,6 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                 cigarettePrice
             });
 
-            localStorage.removeItem("email");
-            localStorage.removeItem("isRegister");
-
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("refreshToken", data.refreshToken);
 
@@ -112,7 +110,7 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
         <>
             <Container>
                 <Header>
-                    <Link to="/onboarding"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
+                    <Link to="/"><LeftArrow src="/assets/register/left_arrow.svg"/></Link>
                     <Register>회원가입</Register>
                 </Header>
                 <Title>{getData.title}</Title>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import styled from "styled-components";
@@ -13,6 +13,11 @@ const Onboarding = () => {
     const onLogin = () => {
         localStorage.setItem("isRegister", "false");
     }
+
+    useEffect(() => {
+        localStorage.removeItem("email");
+        localStorage.removeItem("isRegister");
+    }, []);
 
     return (
         <>
