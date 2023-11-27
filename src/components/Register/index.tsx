@@ -50,12 +50,13 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
 
     useEffect(() => {
         const email = localStorage.getItem("email") ?? "";
-        setInfo({...info, email});
 
         if (!email || email === "") {
             alert("다시 로그인 해주세요");
             window.location.href = "/";
         }
+
+        setInfo({...info, email});
     }, []);
 
 
