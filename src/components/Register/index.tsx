@@ -89,9 +89,6 @@ const RegisterPage = (props: {step: Step, setStep: Dispatch<React.SetStateAction
                 cigarettePrice
             });
 
-            localStorage.removeItem("email");
-            localStorage.removeItem("isRegister");
-
             localStorage.setItem("accessToken", data.accessToken);
             localStorage.setItem("refreshToken", data.refreshToken);
 
