@@ -17,6 +17,14 @@ const Onboarding = () => {
     useEffect(() => {
         localStorage.removeItem("email");
         localStorage.removeItem("isRegister");
+
+        const accessToken = localStorage.getItem("accessToken");
+        const refreshToken = localStorage.getItem("refreshToken");
+
+        if (accessToken && refreshToken) {
+            window.location.href = "/home";
+        }
+
     }, []);
 
     return (
