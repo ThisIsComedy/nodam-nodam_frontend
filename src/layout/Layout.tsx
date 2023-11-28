@@ -24,6 +24,8 @@ const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 120px;
+
+	background-color: ${color.white};
 `;
 
 const Main = styled.main`
