@@ -1,8 +1,7 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
-
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import BoxContainer from "../../components/BoxContainer/BoxContainer";
@@ -10,8 +9,26 @@ import Footer from "../../components/Footer/Footer";
 import RateBox from "../../components/RateBox/RateBox";
 import GrassChart from "../../components/GrassChart/GrassChart";
 import TopSmokingReasonBox from "../../components/TopSmokingReasonBox/TopSmokingReasonBox";
+import { getStats } from "../../apis";
+import { GrassType, SmokeType, StatsType, statsTypeDefault, smokeTypeDefault, grassTypeDefault } from "./type";
 
 const Record = () => {
+
+	const [stats, setStats] = useState<StatsType>(statsTypeDefault);
+	const [grass, setGrass] = useState<GrassType>(grassTypeDefault);
+	const [smoke, setSmoke] = useState<SmokeType>(smokeTypeDefault);
+
+	useEffect(() => {
+		const onRender = async () => {
+			const response = await getStats();
+			setStats(response.response);
+			setGrass(response.grass);
+			setSmoke(response.smokeCause);
+		};
+
+		onRender();
+	}, []);
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.gray100}>
@@ -20,14 +37,14 @@ const Record = () => {
 						<Title>기록</Title>
 					</Header>
 					<BoxContainer>
-						<RateBox title="총 금연일" rate={500} type="일" />
-						<RateBox title="아낀 금액" rate={145600} type="원" />
-						<RateBox title="연속 금연일" rate={72} type="일" />
-						<RateBox title="최장 연속 금연일" rate={234} type="일" />
-						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
-						<RateBox title="흡연 횟수" rate={3} type="회" />
-						<GrassChart />
-						<TopSmokingReasonBox />
+						<RateBox title="총 금연일" rate={stats.noSmokeDay} type="일" />
+						<RateBox title="아낀 금액" rate={stats.saveMoney} type="원" />
+						<RateBox title="연속 금연일" rate={stats.continuityNoSmoke} type="일" />
+						<RateBox title="최장 연속 금연일" rate={stats.maximumContinuityNoSmoke} type="일" />
+						<RateBox title="3일 연속 금연 횟수" rate={stats.threeDayContinuityNoSmoke} type="회" />
+						<RateBox title="흡연 횟수" rate={stats.smokeCount} type="회" />
+						<GrassChart grass={grass} />
+						<TopSmokingReasonBox smoke={smoke} />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={true} page={2} />
