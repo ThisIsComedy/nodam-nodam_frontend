@@ -4,7 +4,7 @@ import color from "../../styles/color";
 import GrassCell from './GrassCell';
 import { GrassType } from "../../pages/Record/type";
 import { SmokedDataType, smokedDataTypeDefault } from "./type";
-import { getCurrentDate, getNonSmokedDates } from "./utils";
+import { getNonSmokedDates } from "./utils";
 
 const GrassChart = ({ grass }: { grass: GrassType }) => {
 
