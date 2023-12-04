@@ -16,7 +16,16 @@ export const register = async (body: {email: string, name: string, smokePerDay: 
 export const logout = async () => {
     const { data } = await instance.delete("/api/auth/logout", {
         headers: {
-            Authorization: localStorage.getItem("accessToken"),
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+}
+
+export const getStats = async () => {
+    const { data } = await instance.get("/api/stats/details", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         }
     });
     return data;
