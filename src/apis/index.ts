@@ -30,3 +30,12 @@ export const getStats = async () => {
     });
     return res?.data;
 }
+
+export const getProfile = async () => {
+    const { data } = await instance.get("/api/user/profile", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+};

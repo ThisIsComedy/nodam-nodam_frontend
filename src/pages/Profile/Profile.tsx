@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
-
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
 import Badge from "../../components/Badge/Badge";
-import { logout } from "../../apis";
-
+import { getProfile, logout } from "../../apis";
+import { UserInfo, userInfoDefault } from "./type";
 
 const Profile = () => {
 
+	const [userInfo, setUserInfo] = useState<UserInfo>(userInfoDefault);
+	const [badgeInfo, setBadgeInfo] = useState<number[]>([]);
+
 	const onLogout = async () => {
-		logout();
+		await logout();
 
 		localStorage.removeItem("accessToken");
 		localStorage.removeItem("refreshToken");
@@ -22,6 +24,38 @@ const Profile = () => {
 
 		window.location.href = "/";
 	};
+
+	useEffect(() => {
+		const onRender = async () => {
+			const {
+				name,
+				email,
+				profileUrl,
+				noSmokeDay,
+				maximumContinuityNoSmoke,
+				saveMoney,
+				threeDayContinuityNoSmoke
+			} = await getProfile();
+			setUserInfo({
+				name,
+				email,
+				profileUrl,
+				noSmokeDay,
+				maximumContinuityNoSmoke,
+				saveMoney,
+				threeDayContinuityNoSmoke
+			});
+
+			setBadgeInfo([
+				noSmokeDay < 15 ? 0 : noSmokeDay < 33 ? 1 : noSmokeDay < 66 ? 2 : 3,
+				maximumContinuityNoSmoke < 15 ? 0 : maximumContinuityNoSmoke < 33 ? 1 : maximumContinuityNoSmoke < 66 ? 2 : 3,
+				saveMoney < 100000 ? 0 : saveMoney < 500000 ? 1 : saveMoney < 1000000 ? 2 : 3,
+				threeDayContinuityNoSmoke < 5 ? 0 : threeDayContinuityNoSmoke < 11 ? 1 : threeDayContinuityNoSmoke < 22 ? 2 : 3,
+			]);
+		};
+
+		onRender();
+	}, []);
 
 	return (
 		<Layout>
@@ -33,15 +67,15 @@ const Profile = () => {
 					</Header>
 					<ProfileBoxContainer>
 						<ProfileGroup>
-							<ProfileImage src="/assets/global/nodamSampleImage.png" />
-							<UserName>신준서</UserName>
-							<UserEmail>ddoory1103@gmail.com</UserEmail>
+							<ProfileImage src={userInfo.profileUrl}/>
+							<UserName>{userInfo.name}</UserName>
+							<UserEmail>{userInfo.email}</UserEmail>
 						</ProfileGroup>
 						<BadgeContainer>
-							<Badge title="금연" rate={5} type={0} />
-							<Badge title="연속 금연" rate={500000} type={1} />
-							<Badge title="아낀 금액" rate={5} type={2} />
-							<Badge title="3일 연속 금연" rate={5} type={3} />
+							<Badge title="금연" rate={userInfo.noSmokeDay} type={badgeInfo[0]} />
+							<Badge title="최장 연속 금연" rate={userInfo.maximumContinuityNoSmoke} type={badgeInfo[1]} />
+							<Badge title="아낀 금액" rate={userInfo.saveMoney} type={badgeInfo[2]} />
+							<Badge title="3일 연속 금연" rate={userInfo.threeDayContinuityNoSmoke} type={badgeInfo[3]} />
 						</BadgeContainer>
 					</ProfileBoxContainer>
 				</Section>
@@ -104,6 +138,7 @@ const ProfileImage = styled.img`
 	width: 120px;
 	height: 120px;
 	margin-bottom: 16px;
+	border-radius: 500px;
 `;
 
 const UserName = styled.p`
