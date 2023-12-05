@@ -23,14 +23,20 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
-    (error) => {
-        const { code, message } = error.response.data;
+    async (error) => {
+        try {
+            const { code } = error.response.data;
 
-        if (code === 403 && message === "만료된 토큰입니다.") {
-            tokenRefresh();
+            if (code === 403) {
+                await tokenRefresh();
+                location.reload();
+                return;
+            }
+
+            return Promise.reject(error);
+        } catch (err) {
+            console.log(err);
         }
-
-        return Promise.reject(error);
     }
 );
 

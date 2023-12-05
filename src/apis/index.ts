@@ -23,10 +23,10 @@ export const logout = async () => {
 }
 
 export const getStats = async () => {
-    const { data } = await instance.get("/api/stats/details", {
+    const res = await instance.get("/api/stats/details", {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         }
     });
-    return data;
+    return res?.data;
 }
