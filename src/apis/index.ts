@@ -23,10 +23,19 @@ export const logout = async () => {
 }
 
 export const getStats = async () => {
-    const { data } = await instance.get("/api/stats/details", {
+    const res = await instance.get("/api/stats/details", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return res?.data;
+}
+
+export const getProfile = async () => {
+    const { data } = await instance.get("/api/user/profile", {
         headers: {
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         }
     });
     return data;
-}
+};

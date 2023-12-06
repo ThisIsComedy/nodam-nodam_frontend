@@ -21,11 +21,11 @@ const Record = () => {
 	useEffect(() => {
 		const onRender = async () => {
 			const response = await getStats();
+			if(!response) return;
 			setStats(response.response);
 			setGrass(response.grass);
 			setSmoke(response.smokeCause);
 		};
-
 		onRender();
 	}, []);
 
