@@ -39,3 +39,21 @@ export const getProfile = async () => {
     });
     return data;
 };
+
+export const getSimpleStats = async () => {
+    const { data } = await instance.get("/api/stats/summary", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+};
+
+export const getGrassChart = async () => {
+    const { data } = await instance.get("/api/smoke", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+};

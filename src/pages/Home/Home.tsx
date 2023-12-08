@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
@@ -11,11 +11,33 @@ import KnowHowBox from "../../components/KnowHowBox/KnowHowBox";
 import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheckBox";
 import GrassChart from "../../components/GrassChart/GrassChart";
 import RateBox from "../../components/RateBox/RateBox";
+import { getGrassChart, getSimpleStats } from "../../apis";
+import { GrassType, grassTypeDefault } from "../Record/type";
+import { SimpleStatsType, simpleStatsTypeDefault } from "./type";
 
 const Home = () => {
+	const [stats, setStats] = useState<SimpleStatsType>(simpleStatsTypeDefault);
+	const [grass, setGrass] = useState<GrassType>(grassTypeDefault);
+
 	useEffect(() => {
 		const accessToken = localStorage.getItem("accessToken");
 		const refreshToken = localStorage.getItem("refreshToken");
+
+		const getStats = async () => {
+			const {
+				threeDayCurrentState,
+				threeDayContinuityNoSmoke,
+				saveMoney
+			} = await getSimpleStats();
+			setStats({
+				threeDayCurrentState,
+				threeDayContinuityNoSmoke,
+				saveMoney
+			});
+
+			const data = await getGrassChart();
+			setGrass(data);
+		};
 
 		localStorage.removeItem("email");
 		localStorage.removeItem("isRegister");
@@ -24,6 +46,8 @@ const Home = () => {
 			alert("로그아웃 되었습니다");
 			window.location.href = "/";
 		}
+
+		getStats();
 	}, []);
 
 	return (
@@ -35,10 +59,10 @@ const Home = () => {
 					</Header>
 					<BoxContainer>
 						<KnowHowBox />
-						<ThreeDaysCheckBox />
-						{/*<GrassChart />*/}
-						<RateBox title="3일 연속 금연 횟수" rate={90} type="회" />
-						<RateBox title="아낀 금액" rate={9000} type="원" />
+						<ThreeDaysCheckBox state={stats.threeDayCurrentState} />
+						<GrassChart grass={grass}/>
+						<RateBox title="3일 연속 금연 횟수" rate={stats.threeDayContinuityNoSmoke} type="회" />
+						<RateBox title="아낀 금액" rate={stats.saveMoney} type="원" />
 					</BoxContainer>
 					<RetryButton>금연 재도전하기</RetryButton>
 				</Section>
