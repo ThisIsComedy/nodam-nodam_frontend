@@ -4,14 +4,14 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 import CheckButton from "./CheckButton";
 
-const ThreeDaysCheckBox = () => {
+const ThreeDaysCheckBox = ({ state }: { state: number }) => {
 	return (
 		<Container>
 			<Title>3일 연속 금연하기</Title>
 			<CheckButtonBox>
-				<CheckButton num={1} isChecked={true} />
-				<CheckButton num={2} isChecked={false} />
-				<CheckButton num={3} isChecked={false} />
+				<CheckButton num={1} isChecked={state >= 1 && state <= 3} />
+				<CheckButton num={2} isChecked={state >= 2 && state <= 3} />
+				<CheckButton num={3} isChecked={state === 3} />
 			</CheckButtonBox>
 		</Container>
 	);
