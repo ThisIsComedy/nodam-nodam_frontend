@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
@@ -9,36 +9,56 @@ import BoxContainer from "../../components/BoxContainer/BoxContainer";
 import Footer from "../../components/Footer/Footer";
 import Top3RankingGroup from "../../components/RankingGroup/Top3RankingGroup";
 import DefaultRankingGroup from "../../components/RankingGroup/DefaultRankingGroup";
+import { getRanking } from "../../apis";
+import { RankType, rankTypeDefault } from "./type";
 
 const Ranking = () => {
+
+	const [rank, setRank] = useState<RankType[]>(rankTypeDefault);
+
+	useEffect(() => {
+		const getRank = async () => {
+			const res = await getRanking();
+			setRank(res.map(({ userName, profileImage, threeDayContinuityNoSmoke }: RankType) => ({
+				userName,
+				profileImage,
+				threeDayContinuityNoSmoke
+			})));
+		};
+
+		getRank();
+	}, []);
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.white}>
 				<Section>
-					<Header>
+					<Header onClick={() => console.log(rank)}>
 						<Title>랭킹</Title>
 						<Information>3일 연속 금연일 기준</Information>
 					</Header>
 					<BoxContainer>
 						<Top3RankingContainer>
-							<Top3RankingGroup name="이상진"	rate={80} rank={2}/>
-							<Top3RankingGroup name="신준서"	rate={120} rank={1}/>
-							<Top3RankingGroup name="이창보"	rate={70} rank={3}/>
+							{rank.slice(0, 3).map((obj, idx) => {
+								const top3Order: number[] = [2, 1, 3];
+
+								return (
+									<Top3RankingGroup
+										name={obj.userName}
+										rate={obj.threeDayContinuityNoSmoke}
+										rank={top3Order[idx]}
+									/>
+								);
+							})}
 						</Top3RankingContainer>
 						<DefaultRankingContainer>
-							<DefaultRankingGroup name="마현우" rate={69} rank={4}/>
-							<DefaultRankingGroup name="강민석" rate={68} rank={5}/>
-							<DefaultRankingGroup name="강승훈" rate={67} rank={6}/>
-							<DefaultRankingGroup name="권세원" rate={66} rank={8}/>
-							<DefaultRankingGroup name="김석진" rate={65} rank={9}/>
-							<DefaultRankingGroup name="김민석" rate={64} rank={10}/>
-							<DefaultRankingGroup name="백진암" rate={63} rank={11}/>
-							<DefaultRankingGroup name="변은혜" rate={62} rank={12}/>
-							<DefaultRankingGroup name="심지혜" rate={61} rank={13}/>
-							<DefaultRankingGroup name="원설아" rate={60} rank={14}/>
-							<DefaultRankingGroup name="이하린" rate={59} rank={15}/>
-							<DefaultRankingGroup name="한예준" rate={56} rank={16}/>
-							<DefaultRankingGroup name="황현민" rate={34} rank={17}/>
+							{rank.slice(3).map((obj, idx) => (
+								<DefaultRankingGroup
+									name={obj.userName}
+									rate={obj.threeDayContinuityNoSmoke}
+									rank={idx + 4}
+								/>
+							))}
 						</DefaultRankingContainer>
 					</BoxContainer>
 				</Section>

@@ -57,3 +57,12 @@ export const getGrassChart = async () => {
     });
     return data;
 };
+
+export const getRanking = async () => {
+    const { data } = await instance.get("/api/rank", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+}
