@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Dispatch, useState } from "react";
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
@@ -6,12 +6,13 @@ import color from "../../styles/color";
 import Layout from "../../layout/Layout";
 import Screen from "../../layout/Screen/Screen";
 import Footer from "../../components/Footer/Footer";
-import Badge from "../../components/Badge/Badge";
-import { logout } from "../../apis";
 import BoxContainer from "../../components/BoxContainer/BoxContainer";
-
+import RetryPage from "../../components/Retry/RetryPage";
+import { Step } from "./types";
 
 const RetryForm = () => {
+	const [step, setStep] = useState<Step>(1);
+
 	return (
 		<Layout>
 			<Screen bgcolor={color.white}>
@@ -21,7 +22,7 @@ const RetryForm = () => {
 						<CloseIcon src="/assets/global/close.svg" onClick={() => { window.location.href = "/home" }} />
 					</Header>
 					<BoxContainer>
-						
+						<RetryPage step={step} setStep={setStep} />
 					</BoxContainer>
 				</Section>
 				<Footer isGNB={false} page={0} />
