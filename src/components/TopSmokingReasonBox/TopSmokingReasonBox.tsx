@@ -1,43 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
+import {SmokeType} from "../../pages/Record/type";
 
-const TopSmokingReasonBox = () => {
-	const topSmokingReason = [
-		{
-			type: "언제",
-			reason: "점심 식사 직후",
-			rate: 3,
-		},
-		{
-			type: "어디서",
-			reason: "식당에서",
-			rate: 2,
-		},
-		{
-			type: "왜",
-			reason: "친구의 권유로 어쩔 수 없이",
-			rate: 5,
-		},
-	];
+const TopSmokingReasonBox = ({ smoke }: { smoke: SmokeType }) => {
 
 	return (
 		<Container>
 			<Title>TOP 흡연 원인</Title>
-			{
-				topSmokingReason.map((e, i) => {
-					return (
-						<ReasonGroup>
-							<Type>{e.type}</Type>
-							<TextGroup>
-								<Text>{e.reason}</Text>
-								<Text>{e.rate}회</Text>
-							</TextGroup>
-						</ReasonGroup>
-					);
-				})
-			}
+			<ReasonGroup>
+				<Type>언제</Type>
+				<TextGroup>
+					<Text>{smoke?.when ?? ""}</Text>
+					<Text>{smoke?.whenCount ?? 0}회</Text>
+				</TextGroup>
+			</ReasonGroup>
+			<ReasonGroup>
+				<Type>어디서</Type>
+				<TextGroup>
+					<Text>{smoke?.where ?? ""}</Text>
+					<Text>{smoke?.whereCount ?? 0}회</Text>
+				</TextGroup>
+			</ReasonGroup>
+			<ReasonGroup>
+				<Type>왜</Type>
+				<TextGroup>
+					<Text>{smoke?.why ?? ""}</Text>
+					<Text>{smoke?.whyCount ?? 0}회</Text>
+				</TextGroup>
+			</ReasonGroup>
 		</Container>
 	);
 };
