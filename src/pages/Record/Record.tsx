@@ -37,12 +37,12 @@ const Record = () => {
 						<Title>기록</Title>
 					</Header>
 					<BoxContainer>
-						<RateBox title="총 금연일" rate={stats.noSmokeDay} type="일" />
-						<RateBox title="아낀 금액" rate={stats.saveMoney} type="원" />
-						<RateBox title="연속 금연일" rate={stats.continuityNoSmoke} type="일" />
-						<RateBox title="최장 연속 금연일" rate={stats.maximumContinuityNoSmoke} type="일" />
-						<RateBox title="3일 연속 금연 횟수" rate={stats.threeDayContinuityNoSmoke} type="회" />
-						<RateBox title="흡연 횟수" rate={stats.smokeCount} type="회" />
+						<RateBox title="총 금연일" rate={stats?.noSmokeDay ?? 0} type="일" />
+						<RateBox title="아낀 금액" rate={stats?.saveMoney ?? 0} type="원" />
+						<RateBox title="연속 금연일" rate={stats?.continuityNoSmoke ?? 0} type="일" />
+						<RateBox title="최장 연속 금연일" rate={stats?.maximumContinuityNoSmoke ?? 0} type="일" />
+						<RateBox title="3일 연속 금연 횟수" rate={stats?.threeDayContinuityNoSmoke ?? 0} type="회" />
+						<RateBox title="흡연 횟수" rate={stats?.smokeCount ?? 0} type="회" />
 						<GrassChart grass={grass} />
 						<TopSmokingReasonBox smoke={smoke} />
 					</BoxContainer>

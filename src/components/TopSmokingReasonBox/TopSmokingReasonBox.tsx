@@ -12,22 +12,22 @@ const TopSmokingReasonBox = ({ smoke }: { smoke: SmokeType }) => {
 			<ReasonGroup>
 				<Type>언제</Type>
 				<TextGroup>
-					<Text>{smoke.when}</Text>
-					<Text>{smoke.whenCount}회</Text>
+					<Text>{smoke?.when ?? ""}</Text>
+					<Text>{smoke?.whenCount ?? 0}회</Text>
 				</TextGroup>
 			</ReasonGroup>
 			<ReasonGroup>
 				<Type>어디서</Type>
 				<TextGroup>
-					<Text>{smoke.where}</Text>
-					<Text>{smoke.whereCount}회</Text>
+					<Text>{smoke?.where ?? ""}</Text>
+					<Text>{smoke?.whereCount ?? 0}회</Text>
 				</TextGroup>
 			</ReasonGroup>
 			<ReasonGroup>
 				<Type>왜</Type>
 				<TextGroup>
-					<Text>{smoke.why}</Text>
-					<Text>{smoke.whyCount}회</Text>
+					<Text>{smoke?.why ?? ""}</Text>
+					<Text>{smoke?.whyCount ?? 0}회</Text>
 				</TextGroup>
 			</ReasonGroup>
 		</Container>
