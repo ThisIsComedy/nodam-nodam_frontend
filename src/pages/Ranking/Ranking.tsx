@@ -33,7 +33,7 @@ const Ranking = () => {
 		<Layout>
 			<Screen bgcolor={color.white}>
 				<Section>
-					<Header onClick={() => console.log(rank)}>
+					<Header>
 						<Title>랭킹</Title>
 						<Information>3일 연속 금연일 기준</Information>
 					</Header>
