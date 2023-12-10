@@ -36,7 +36,7 @@ const Record = () => {
 					<Header>
 						<Title>기록</Title>
 					</Header>
-					<BoxContainer>
+					<BoxContainer isGNB={true} >
 						<RateBox title="총 금연일" rate={stats?.noSmokeDay ?? 0} type="일" />
 						<RateBox title="아낀 금액" rate={stats?.saveMoney ?? 0} type="원" />
 						<RateBox title="연속 금연일" rate={stats?.continuityNoSmoke ?? 0} type="일" />

@@ -2,7 +2,6 @@ import Aside from "./Aside/Aside";
 import styled from "styled-components";
 import font from "../styles/font";
 import color from "../styles/color";
-import Footer from "../components/Footer/Footer";
 
 const Layout = (props: { children: React.ReactNode }) => {
 	return (
@@ -51,11 +50,8 @@ const Mockup = styled.img`
 const Screen = styled.div`
 	width: 390px;
 	height: 844px;
-	/* background-color: #fff; */
 	position: absolute;
 	z-index: 2;
 	top: 19.5px;
 	left: 23.5px;
-	/* padding: 47px 0 34px; */
-	/* border-radius: 49px; */
 `;

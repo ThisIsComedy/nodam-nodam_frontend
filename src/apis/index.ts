@@ -1,4 +1,5 @@
 import { instance, loginInstance } from "./instance";
+import { SmokeType } from "../pages/RetryForm/types";
 
 export const googleLogin = async (code: string) => {
     try {
@@ -66,3 +67,24 @@ export const getRanking = async () => {
     });
     return data;
 }
+
+export const postSmoke = async (body: SmokeType) => {
+    try {
+        const { data } = await instance.post("/api/smoke", body, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            }
+        });
+        return data;
+    } catch (e) {
+    }
+}
+
+export const checkSmoked = async () => {
+    const { data } = await instance.get("/api/smoke/check", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+};

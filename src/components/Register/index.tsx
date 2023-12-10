@@ -1,8 +1,8 @@
 import React, {Dispatch, useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import font from "../../styles/font";
-import { Step } from "../../pages/register/types";
 import color from "../../styles/color";
+import { Step } from "../../pages/register/types";
 import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
 import {register} from "../../apis";
