@@ -37,7 +37,7 @@ const Ranking = () => {
 						<Title>랭킹</Title>
 						<Information>3일 연속 금연일 기준</Information>
 					</Header>
-					<BoxContainer>
+					<BoxContainer isGNB={true} >
 						<Top3RankingContainer>
 							{rank.slice(0, 3).map((obj, idx) => {
 								const top3Order: number[] = [2, 1, 3];

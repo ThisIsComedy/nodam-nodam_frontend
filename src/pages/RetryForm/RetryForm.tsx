@@ -21,7 +21,7 @@ const RetryForm = () => {
 						<Title>금연 재도전</Title>
 						<CloseIcon src="/assets/global/close.svg" onClick={() => { window.location.href = "/home" }} />
 					</Header>
-					<BoxContainer>
+					<BoxContainer isGNB={false} >
 						<RetryPage step={step} setStep={setStep} />
 					</BoxContainer>
 				</Section>

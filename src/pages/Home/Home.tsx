@@ -60,7 +60,7 @@ const Home = () => {
 					<Header>
 						<Logo src='/assets/home/nodamnodamlogo_gray.png' />
 					</Header>
-					<BoxContainer>
+					<BoxContainer isGNB={!isBottomSheetOpen} >
 						<KnowHowBox />
 						<ThreeDaysCheckBox state={stats.threeDayCurrentState} />
 						<GrassChart grass={grass}/>
