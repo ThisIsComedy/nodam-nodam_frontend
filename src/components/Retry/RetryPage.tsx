@@ -4,6 +4,9 @@ import font from "../../styles/font";
 import color from "../../styles/color";
 import { Step } from '../../pages/RetryForm/types';
 import { useRecoilState } from 'recoil';
+import { Link } from "react-router-dom";
+import LargeButton from "../atoms/LargeButton";
+import TwoButton from "../atoms/TwoButton";
 
 interface EntryFieldType {
 	id: Step;
@@ -61,7 +64,15 @@ const RetryPage = (props: { step: Step, setStep: Dispatch<React.SetStateAction<S
 
 	return (
 		<Container>
-			
+			<Section>
+				<Title>{getData.title}</Title>
+				<OptionWrap>
+					{getData.answerList.map(obj => <Option>{obj}</Option>)}
+				</OptionWrap>
+			</Section>
+			{props.step === 1
+			? <LargeButton text="다음" isLarge={true} />
+			: <TwoButton large="다음" small="이전" />}
 		</Container>
 	);
 };
@@ -69,5 +80,43 @@ const RetryPage = (props: { step: Step, setStep: Dispatch<React.SetStateAction<S
 export default RetryPage;
 
 const Container = styled.div`
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 172px;
+	margin-top: 125px;
+`;
+
+const Section = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+`;
+
+const Title = styled.div`
+	${font.H2};
+	color: ${color.black};
+`;
+
+const OptionWrap = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 12px;
+`;
+
+const Option = styled.div`
+	width: 173px;
+	height: 56px;
+	${font.p1};
+	color: ${color.black};
+	border-radius: 16px;
+	background-color: ${color.gray100};
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	
+	&:hover {
+		cursor: pointer;
+	}
 `;
