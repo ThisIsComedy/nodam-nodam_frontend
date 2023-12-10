@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { Moment, Place, SmokeType, Why } from "../types";
+import { SmokeType } from "../types";
 
 export const smokeInfoState = atom<SmokeType>({
   key: "registerState",

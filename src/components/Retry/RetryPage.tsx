@@ -3,7 +3,6 @@ import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
 import { useRecoilState } from 'recoil';
-import { Link } from "react-router-dom";
 import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
 import { smokeInfoState } from "../../pages/RetryForm/store/state";
@@ -15,7 +14,7 @@ interface EntryFieldType {
 	title: string;
 	key: string;
 	answerList: string[];
-};
+}
 
 const data: EntryFieldType[] = [
 	{
