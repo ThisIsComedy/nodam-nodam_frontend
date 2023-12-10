@@ -7,12 +7,16 @@ const KnowHowBox = () => {
 	const knowHowList = [
 		{
 			title: "금단증상이 심해진다면?",
-			desc: "이 방법을 따라해보세요!",
+			desc: "클릭해서 해결 방법 알아보기",
 		},
 	];
 
 	return (
-		<Container>
+		<Container onClick={() =>
+			window.open(
+				"https://clinic.paju.go.kr/clinic/clinic_03/clinic_03_01/clinic_03_01_14.jsp"
+			)
+		}>
 			<KnowHowBoxTitle>{knowHowList[0].title}</KnowHowBoxTitle>
 			<KnowHowBoxDesc>{knowHowList[0].desc}</KnowHowBoxDesc>
 		</Container>
@@ -29,6 +33,7 @@ const Container = styled.div`
 	gap: 4px;
 	flex-direction: column;
 	padding: 10px 16px;
+	cursor: pointer;
 `;
 
 const KnowHowBoxTitle = styled.p`
