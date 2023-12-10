@@ -187,7 +187,7 @@ const Option = styled.div<{ isActive: boolean }>`
 	width: 173px;
 	height: 56px;
 	${font.p1};
-	color: ${color.black};
+	color: ${({ isActive }) => isActive ? color.white : color.black};
 	border-radius: 16px;
 	background-color: ${({ isActive }) => isActive ? color.nodamGreen : color.gray100};
 	display: flex;
