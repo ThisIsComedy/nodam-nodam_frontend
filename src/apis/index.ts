@@ -79,3 +79,12 @@ export const postSmoke = async (body: SmokeType) => {
     } catch (e) {
     }
 }
+
+export const checkSmoked = async () => {
+    const { data } = await instance.get("/api/smoke/check", {
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        }
+    });
+    return data;
+};

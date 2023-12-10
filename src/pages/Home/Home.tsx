@@ -12,7 +12,7 @@ import ThreeDaysCheckBox from "../../components/ThreeDaysCheckBox/ThreeDaysCheck
 import GrassChart from "../../components/GrassChart/GrassChart";
 import RateBox from "../../components/RateBox/RateBox";
 import TwoButton from "../../components/atoms/TwoButton";
-import { getGrassChart, getSimpleStats } from "../../apis";
+import { checkSmoked, getGrassChart, getSimpleStats } from "../../apis";
 import { GrassType, grassTypeDefault } from "../Record/type";
 import { SimpleStatsType, simpleStatsTypeDefault } from "./type";
 
@@ -21,6 +21,7 @@ const Home = () => {
 	const BottomSheetBackground = useRef<any>();
 	const [stats, setStats] = useState<SimpleStatsType>(simpleStatsTypeDefault);
 	const [grass, setGrass] = useState<GrassType>(grassTypeDefault);
+	const [isSmoked, setIsSmoked] = useState<any>();
 
 	useEffect(() => {
 		const accessToken = localStorage.getItem("accessToken");
@@ -42,6 +43,11 @@ const Home = () => {
 			setGrass(data);
 		};
 
+		const checkSmoke = async () => {
+			const res = await checkSmoked();
+			setIsSmoked(res);
+		};
+
 		localStorage.removeItem("email");
 		localStorage.removeItem("isRegister");
 
@@ -51,7 +57,10 @@ const Home = () => {
 		}
 
 		getStats();
+		checkSmoke();
 	}, []);
+
+
 
 	return (
 		<Layout>
@@ -87,7 +96,14 @@ const Home = () => {
 								<TwoButton
 									large="재도전"
 									small="닫기"
-									largeOnClick={() => { window.location.href = "/retry" }}
+									largeOnClick={() => {
+										if (isSmoked) {
+											setBottomSheetOpen(false);
+											alert("이미 금연 실패 버튼을 눌렀습니다.");
+											return;
+										}
+										window.location.href = "/retry";
+									}}
 									smallOnClick={() => setBottomSheetOpen(false)} />
 							</BottomSheetContent>
 						</BottomSheetContainer>
