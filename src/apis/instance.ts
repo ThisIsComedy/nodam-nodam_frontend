@@ -25,7 +25,12 @@ instance.interceptors.response.use(
     },
     async (error) => {
         try {
-            const { code } = error.response.data;
+            const { code, message } = error.response.data;
+
+            if (code === 401 && message === "이미 금연 실패 버튼을 눌렀습니다.") {
+                alert("이미 금연 실패 버튼을 눌렀습니다.");
+                window.location.href = "/home";
+            }
 
             if (code === 403) {
                 await tokenRefresh();

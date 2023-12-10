@@ -1,12 +1,14 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useState } from 'react';
 import styled from "styled-components";
 import font from "../../styles/font";
 import color from "../../styles/color";
-import { Step } from '../../pages/RetryForm/types';
 import { useRecoilState } from 'recoil';
 import { Link } from "react-router-dom";
 import LargeButton from "../atoms/LargeButton";
 import TwoButton from "../atoms/TwoButton";
+import { smokeInfoState } from "../../pages/RetryForm/store/state";
+import { Step, SmokeType, Moment, Place, Why } from "../../pages/RetryForm/types";
+import { postSmoke } from "../../apis";
 
 interface EntryFieldType {
 	id: Step;
@@ -43,7 +45,6 @@ const data: EntryFieldType[] = [
 			"공원에서",
 			"PC방에서",
 			"길거리에서",
-			"집에서",
 		]
 	},
 	{
@@ -58,21 +59,94 @@ const data: EntryFieldType[] = [
 	},
 ];
 
+const moments: Moment[] = [
+	"GO_TO_THE_OFFICE",
+	"LEAVE_THE_OFFICE",
+	"AFTER_LUNCH",
+	"AFTER_DINNER",
+	"ON_WORK",
+	"AFTER_DRINKING",
+	"NIGHT",
+	"DAWN",
+];
+
+const places: Place[] = [
+	"IN_FRONT_OF_HOME",
+	"AT_WORK",
+	"RESTAURANT",
+	"ALLEY",
+	"PARK",
+	"INTERNET_CAFE",
+	"STREET",
+];
+
+const whys: Why[] = [
+	"WITHDRAWAL_SYMPTOM",
+	"HOW_ABOUT",
+	"JUST_WANT"
+];
+
 const RetryPage = (props: { step: Step, setStep: Dispatch<React.SetStateAction<Step>> }) => {
 	const getData: EntryFieldType = data[props.step - 1];
-  // const [info, setInfo] = useRecoilState<UserAdditionalInfo>(registerState);
+
+  const [info, setInfo] = useRecoilState<SmokeType>(smokeInfoState);
+	const [active, setActive] = useState<number>(0);
+	const [lock, setLock] = useState<boolean>(false);
+
+	const postSmokeData = async () => {
+		await postSmoke(info);
+
+		window.location.href = "/home";
+	};
 
 	return (
-		<Container>
+		<Container onClick={() => console.log(props.step)}>
 			<Section>
-				<Title>{getData.title}</Title>
+				<Title>{getData?.title ?? ""}</Title>
 				<OptionWrap>
-					{getData.answerList.map(obj => <Option>{obj}</Option>)}
+					{getData.answerList.map((obj, idx) => (
+							<Option
+								isActive={active === idx}
+								onClick={() => {
+									setActive(idx);
+									setInfo({
+										moment: props.step === 1 ? moments[idx] : info.moment,
+										place: props.step === 2 ? places[idx] : info.place,
+										why: props.step === 3 ? whys[idx] : info.why
+									})
+								}}
+							>{obj}
+							</Option>
+					))}
+					{Array(8 - getData.answerList.length).fill(<EmptyOption />)}
 				</OptionWrap>
 			</Section>
 			{props.step === 1
-			? <LargeButton text="다음" isLarge={true} />
-			: <TwoButton large="다음" small="이전" />}
+			? <LargeButton
+					text="다음"
+					isLarge={true}
+					onClick={() => {
+						props.setStep((props.step as number) + 1 as Step)
+					}}
+			/>
+			: <TwoButton
+					large="다음"
+					small="이전"
+					largeOnClick={() => {
+						if (lock) {
+							return;
+						}
+						if (props.step === 3) {
+							postSmokeData();
+							setLock(true);
+							return;
+						}
+						props.setStep((props.step as number) + 1 as Step)
+					}}
+					smallOnClick={() => {
+						props.setStep((props.step as number) - 1 as Step);
+					}}
+			/>}
 		</Container>
 	);
 };
@@ -105,13 +179,18 @@ const OptionWrap = styled.div`
 	gap: 12px;
 `;
 
-const Option = styled.div`
+const EmptyOption = styled.input`
+	width: 173px;
+	height: 56px;
+`;
+
+const Option = styled.div<{ isActive: boolean }>`
 	width: 173px;
 	height: 56px;
 	${font.p1};
 	color: ${color.black};
 	border-radius: 16px;
-	background-color: ${color.gray100};
+	background-color: ${({ isActive }) => isActive ? color.nodamGreen : color.gray100};
 	display: flex;
 	justify-content: center;
 	align-items: center;
