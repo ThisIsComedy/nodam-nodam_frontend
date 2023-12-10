@@ -90,12 +90,11 @@ const RetryPage = (props: { step: Step, setStep: Dispatch<React.SetStateAction<S
 
   const [info, setInfo] = useRecoilState<SmokeType>(smokeInfoState);
 	const [active, setActive] = useState<number>(0);
-	const [lock, setLock] = useState<boolean>(false);
 
 	const postSmokeData = async () => {
 		await postSmoke(info);
 
-		window.location.href = "/home";
+		window.location.href = "/complete";
 	};
 
 	return (
@@ -132,12 +131,8 @@ const RetryPage = (props: { step: Step, setStep: Dispatch<React.SetStateAction<S
 					large="다음"
 					small="이전"
 					largeOnClick={() => {
-						if (lock) {
-							return;
-						}
 						if (props.step === 3) {
 							postSmokeData();
-							setLock(true);
 							return;
 						}
 						props.setStep((props.step as number) + 1 as Step)
